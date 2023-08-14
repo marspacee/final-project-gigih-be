@@ -13,9 +13,10 @@ router.get("/", async (req, res) => {
 });
 
 // GET /video/:id
-router.get("/", async (req, res) => {
+router.get("/:id", async (req, res) => {
   try {
-    const video = await Video.findById();
+    const { id } = req.params;
+    const video = await Video.findById(id);
     res.status(200).send(video);
   } catch (error) {
     res.status(500).send({ message: error.message });

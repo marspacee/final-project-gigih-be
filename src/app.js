@@ -13,7 +13,9 @@ app.use(express.json());
 app.use(cors({ origin: true }));
 
 const videoRouter = require("./routes/Video");
+const productRouter = require("./routes/Product");
 
 app.use("/video", videoRouter);
+app.use("/product", productRouter);
 
 app.listen(7070, () => console.log("Server Started"));
