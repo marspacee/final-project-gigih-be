@@ -3,9 +3,12 @@ const router = express.Router();
 const Video = require("../models/Video");
 
 // GET /video
-router.get("/", async (req, res) => {
+router.get("/filtered-by-title", async (req, res) => {
   try {
-    const videos = await Video.find();
+    const { filterTitle } = req.query;
+    const regex = new RegExp(filterTitle, "i"); // 'i' flag for case-insensitive search
+
+    const videos = await Video.find({ title: { $regex: regex } });
     res.status(200).send(videos);
   } catch (error) {
     res.status(500).send({ message: error.message });
