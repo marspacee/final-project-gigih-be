@@ -27,6 +27,10 @@ app.use("/video", videoRouter);
 app.use("/product", productRouter);
 app.use("/comment", commentRouter);
 
+app.get("/", (req, res) => {
+  res.status(200).send(`Welcome to Final Project Gigih API`);
+});
+
 app.listen(7070, () =>
   console.log(`Server is Listening on Port: ${env.appPort}`)
 );
